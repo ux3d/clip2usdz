@@ -8,17 +8,20 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 rows = 1
 columns = 6
-fps = 6.0
 epsilon = 0.001
-sampling = 5.0
-flank = 0.5
+duration = 1.0
+timeCodesPerSecond = 30
+flank = 0.1
+
+# Depending calculations
 
 clips = rows * columns
 columnsStep = 1.0 / float(columns)
 rowsStep = 1.0 / float(rows)
 
-timeCodesPerSecond = fps * sampling
-endTimeCode = clips * timeCodesPerSecond 
+frameStep = (duration * timeCodesPerSecond) / clips
+
+endTimeCode = (frameStep * clips) - flank
 
 # 
 # Stage
@@ -102,7 +105,7 @@ for i in range(clips):
     
     scale = currentNode.AddScaleOp()
     for k in range(clips + 1):
-        timeStamp = k * fps * sampling
+        timeStamp = k * frameStep
         scaleValue = (epsilon, epsilon, epsilon)
         if i == k:
             if k > 0:
@@ -110,7 +113,7 @@ for i in range(clips):
             scaleValue = (1.0, 1.0, 1.0)
         scale.Set(time = timeStamp, value = scaleValue)
         if i == k:
-            timeStamp = (k + 1) * fps * sampling
+            timeStamp = (k + 1) * frameStep
             scale.Set(time = timeStamp - flank, value = scaleValue)
     
     # Mesh
