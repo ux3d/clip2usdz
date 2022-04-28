@@ -6,6 +6,8 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 # Parameters
 #
 
+clips = 6
+
 endTimeCode = 143.5
 timeCodesPerSecond = 120.0
 
@@ -22,6 +24,8 @@ untitled = UsdGeom.Xform.Define(stage, '/untitled')
 scope = UsdGeom.Scope.Define(stage, '/untitled/Materials')
 
 scene0 = UsdGeom.Xform.Define(stage, '/untitled/scene0')
+
+node0 = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0')
 
 #
 # Material
@@ -76,6 +80,16 @@ material.CreateSurfaceOutput().ConnectToSource(pbr_shader.ConnectableAPI(), "sur
 #
 
 scene0.AddScaleOp().Set(Gf.Vec3d(100.0, 100.0, 100.0))
+
+#
+# Node
+#
+
+node0.AddTransformOp().Set(Gf.Matrix4d((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1)))
+
+for nodeIndex in range(clips):
+    nodeName = "node" + str(nodeIndex + 1)
+    currentNode = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0/' + nodeName)
 
 #
 # Stage settings

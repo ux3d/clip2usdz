@@ -60,6 +60,36 @@ def Xform "untitled"
     {
         float3 xformOp:scale = (100, 100, 100)
         uniform token[] xformOpOrder = ["xformOp:scale"]
+
+        def Xform "node0"
+        {
+            matrix4d xformOp:transform = ( (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1) )
+            uniform token[] xformOpOrder = ["xformOp:transform"]
+
+            def Xform "node1"
+            {
+            }
+
+            def Xform "node2"
+            {
+            }
+
+            def Xform "node3"
+            {
+            }
+
+            def Xform "node4"
+            {
+            }
+
+            def Xform "node5"
+            {
+            }
+
+            def Xform "node6"
+            {
+            }
+        }
     }
 }
 
