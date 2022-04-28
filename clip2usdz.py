@@ -12,8 +12,8 @@ columns = 6
 duration = 1.0
 imageName = 'pngegg.png'
 epsilon = 0.001
-timeCodesPerSecond = 60
-flank = 0.01
+timeCodesPerSecond = 120
+flank = 1.0 / timeCodesPerSecond 
 
 parser = ArgumentParser()
 parser.add_argument('-r', dest='rows', default=rows, help='Number of rows of the animation strip.')
