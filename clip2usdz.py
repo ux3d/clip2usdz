@@ -48,6 +48,12 @@ endTimeCode = (frameStep * clips) - flank
 # Image conversion
 #
 
+if not os.path.exists(stem + '/'):
+    os.makedirs(stem + '/')
+
+linearColorImage = stem + '/linearColor.jpg'
+maskImage = stem + '/mask.png'
+
 image = Image.open(imageName)
 width, height = image.size
 
@@ -59,7 +65,7 @@ for y in range(1, height):
         for c in range(3):
             modify[c] = int(pow(modify[c]/255.0, 2.2) * 255.0) 
         rgbImage.putpixel((x,y), tuple(modify))
-rgbImage.save('0/image0_lin.jpg')
+rgbImage.save(linearColorImage)
 
 rgbaImage = image.convert('RGBA')
 for y in range(1, height):
@@ -69,7 +75,7 @@ for y in range(1, height):
         for c in range(3):
             modify[c] = 0 
         rgbaImage.putpixel((x,y), tuple(modify))
-rgbaImage.save('0/image0_unlit_a.png') 
+rgbaImage.save(maskImage) 
 
 # 
 # Stage
@@ -107,7 +113,7 @@ uvset0.CreateInput('varname', Sdf.ValueTypeNames.Token).Set('st0')
 tex_emissive = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/tex_emissive')
 
 tex_emissive.CreateIdAttr("UsdUVTexture")
-tex_emissive.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_lin.jpg")
+tex_emissive.CreateInput('file', Sdf.ValueTypeNames.Asset).Set(linearColorImage)
 tex_emissive.CreateInput("st", Sdf.ValueTypeNames.Float2).ConnectToSource(uvset0.ConnectableAPI(), 'result')
 tex_emissive.CreateInput("wrapS", Sdf.ValueTypeNames.Token).Set("clamp")
 tex_emissive.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
@@ -117,7 +123,7 @@ tex_emissive.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
 tex_opacity = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/tex_opacity')
 
 tex_opacity.CreateIdAttr("UsdUVTexture")
-tex_opacity.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_unlit_a.png")
+tex_opacity.CreateInput('file', Sdf.ValueTypeNames.Asset).Set(maskImage)
 tex_opacity.CreateInput("st", Sdf.ValueTypeNames.Float2).ConnectToSource(uvset0.ConnectableAPI(), 'result')
 tex_opacity.CreateInput("wrapS", Sdf.ValueTypeNames.Token).Set("clamp")
 tex_opacity.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")

@@ -26,7 +26,7 @@ def Xform "GuitarPlayer"
             def Shader "tex_emissive"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @0/image0_lin.jpg@
+                asset inputs:file = @GuitarPlayer/linearColor.jpg@
                 float2 inputs:st.connect = </GuitarPlayer/Materials/material0/uvset0.outputs:result>
                 token inputs:wrapS = "clamp"
                 token inputs:wrapT = "clamp"
@@ -36,7 +36,7 @@ def Xform "GuitarPlayer"
             def Shader "tex_opacity"
             {
                 uniform token info:id = "UsdUVTexture"
-                asset inputs:file = @0/image0_unlit_a.png@
+                asset inputs:file = @GuitarPlayer/mask.png@
                 float2 inputs:st.connect = </GuitarPlayer/Materials/material0/uvset0.outputs:result>
                 token inputs:wrapS = "clamp"
                 token inputs:wrapT = "clamp"
