@@ -68,26 +68,50 @@ def Xform "untitled"
 
             def Xform "node1"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
 
             def Xform "node2"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
 
             def Xform "node3"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
 
             def Xform "node4"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
 
             def Xform "node5"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
 
             def Xform "node6"
             {
+                float3 xformOp:scale.timeSamples = {
+                    0: (1, 1, 1),
+                }
+                uniform token[] xformOpOrder = ["xformOp:scale"]
             }
         }
     }

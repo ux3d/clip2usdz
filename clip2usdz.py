@@ -90,6 +90,10 @@ node0.AddTransformOp().Set(Gf.Matrix4d((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0),
 for nodeIndex in range(clips):
     nodeName = "node" + str(nodeIndex + 1)
     currentNode = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0/' + nodeName)
+    
+    scale = currentNode.AddScaleOp()
+    scale.Set(time = 0, value = (1.0, 1.0, 1.0))
+    # TODO: Calculate list
 
 #
 # Stage settings
