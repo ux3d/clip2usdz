@@ -1,9 +1,9 @@
 #usda 1.0
 (
     defaultPrim = "untitled"
-    endTimeCode = 143.5
+    endTimeCode = 180
     startTimeCode = 0
-    timeCodesPerSecond = 120
+    timeCodesPerSecond = 30
     upAxis = "Y"
 )
 
@@ -70,6 +70,13 @@ def Xform "untitled"
             {
                 float3 xformOp:scale.timeSamples = {
                     0: (1, 1, 1),
+                    29.5: (1, 1, 1),
+                    30: (0.001, 0.001, 0.001),
+                    60: (0.001, 0.001, 0.001),
+                    90: (0.001, 0.001, 0.001),
+                    120: (0.001, 0.001, 0.001),
+                    150: (0.001, 0.001, 0.001),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
@@ -77,7 +84,15 @@ def Xform "untitled"
             def Xform "node2"
             {
                 float3 xformOp:scale.timeSamples = {
-                    0: (1, 1, 1),
+                    0: (0.001, 0.001, 0.001),
+                    29.5: (0.001, 0.001, 0.001),
+                    30: (1, 1, 1),
+                    59.5: (1, 1, 1),
+                    60: (0.001, 0.001, 0.001),
+                    90: (0.001, 0.001, 0.001),
+                    120: (0.001, 0.001, 0.001),
+                    150: (0.001, 0.001, 0.001),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
@@ -85,7 +100,15 @@ def Xform "untitled"
             def Xform "node3"
             {
                 float3 xformOp:scale.timeSamples = {
-                    0: (1, 1, 1),
+                    0: (0.001, 0.001, 0.001),
+                    30: (0.001, 0.001, 0.001),
+                    59.5: (0.001, 0.001, 0.001),
+                    60: (1, 1, 1),
+                    89.5: (1, 1, 1),
+                    90: (0.001, 0.001, 0.001),
+                    120: (0.001, 0.001, 0.001),
+                    150: (0.001, 0.001, 0.001),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
@@ -93,7 +116,15 @@ def Xform "untitled"
             def Xform "node4"
             {
                 float3 xformOp:scale.timeSamples = {
-                    0: (1, 1, 1),
+                    0: (0.001, 0.001, 0.001),
+                    30: (0.001, 0.001, 0.001),
+                    60: (0.001, 0.001, 0.001),
+                    89.5: (0.001, 0.001, 0.001),
+                    90: (1, 1, 1),
+                    119.5: (1, 1, 1),
+                    120: (0.001, 0.001, 0.001),
+                    150: (0.001, 0.001, 0.001),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
@@ -101,7 +132,15 @@ def Xform "untitled"
             def Xform "node5"
             {
                 float3 xformOp:scale.timeSamples = {
-                    0: (1, 1, 1),
+                    0: (0.001, 0.001, 0.001),
+                    30: (0.001, 0.001, 0.001),
+                    60: (0.001, 0.001, 0.001),
+                    90: (0.001, 0.001, 0.001),
+                    119.5: (0.001, 0.001, 0.001),
+                    120: (1, 1, 1),
+                    149.5: (1, 1, 1),
+                    150: (0.001, 0.001, 0.001),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
@@ -109,7 +148,15 @@ def Xform "untitled"
             def Xform "node6"
             {
                 float3 xformOp:scale.timeSamples = {
-                    0: (1, 1, 1),
+                    0: (0.001, 0.001, 0.001),
+                    30: (0.001, 0.001, 0.001),
+                    60: (0.001, 0.001, 0.001),
+                    90: (0.001, 0.001, 0.001),
+                    120: (0.001, 0.001, 0.001),
+                    149.5: (0.001, 0.001, 0.001),
+                    150: (1, 1, 1),
+                    179.5: (1, 1, 1),
+                    180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
             }
