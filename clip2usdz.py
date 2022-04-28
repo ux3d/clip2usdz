@@ -8,7 +8,19 @@ untitled = UsdGeom.Xform.Define(stage, '/untitled')
 
 scope = UsdGeom.Scope.Define(stage, '/untitled/Materials')
 
+# Material
+
 material = UsdShade.Material.Define(stage, '/untitled/Materials/material0')
+
+# Shaders
+
+pbr_shader = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/pbr_shader')
+
+uvset0 = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/uvset0')
+
+tex_emissive = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_emissive')
+
+tex_opacity = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_opacity')
 
 # Stage settings
 

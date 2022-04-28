@@ -13,6 +13,21 @@ def Xform "untitled"
     {
         def Material "material0"
         {
+            def Shader "pbr_shader"
+            {
+            }
+
+            def Shader "uvset0"
+            {
+            }
+
+            def Shader "tex_emissive"
+            {
+            }
+
+            def Shader "tex_opacity"
+            {
+            }
         }
     }
 }
