@@ -21,7 +21,7 @@ parser.add_argument('-r', dest='rows', default=rows, help='Number of rows of the
 parser.add_argument('-c', dest='columns', default=columns, help='Number of columns of the animation strip.')
 parser.add_argument('-d', dest='duration', default=duration, help='Duration in seconds.')
 parser.add_argument('-i', dest='imageName', default=imageName, help='Use another image beside the included animation strip.')
-parser.add_argument('-t', dest='timeCodesPerSecond', default=timeCodesPerSecond, help='Number of frames used per second.')
+parser.add_argument('-t', dest='timeStamps', default=timeCodesPerSecond, help='Number of time stamps used per second.')
 parser.add_argument('-f', dest='flank', default=flank, help='Value used to simulate a step interpolation.')
 args = parser.parse_args()
 
@@ -29,7 +29,7 @@ rows = int(args.rows)
 columns = int(args.columns)
 duration = float(args.duration)
 imageName = args.imageName
-timeCodesPerSecond = float(args.timeCodesPerSecond)
+timeCodesPerSecond = float(args.timeStamps)
 flank = float(args.flank)
 
 # Depending calculations
