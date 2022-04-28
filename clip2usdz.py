@@ -34,7 +34,7 @@ material = UsdShade.Material.Define(stage, '/untitled/Materials/material0')
 uvset0 = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/uvset0')
 
 uvset0.CreateIdAttr("UsdPrimvarReader_float2")
-uvset0.CreateInput('varname',Sdf.ValueTypeNames.Token).Set('st0')
+uvset0.CreateInput('varname', Sdf.ValueTypeNames.Token).Set('st0')
 
 #
 
@@ -43,6 +43,8 @@ tex_emissive = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_
 tex_emissive.CreateIdAttr("UsdUVTexture")
 tex_emissive.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_lin.jpg")
 tex_emissive.CreateInput("st", Sdf.ValueTypeNames.Float2).ConnectToSource(uvset0.ConnectableAPI(), 'result')
+tex_emissive.CreateInput("wrapS", Sdf.ValueTypeNames.Token).Set("clamp")
+tex_emissive.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
 
 #
 
@@ -51,6 +53,8 @@ tex_opacity = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_o
 tex_opacity.CreateIdAttr("UsdUVTexture")
 tex_opacity.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_unlit_a.png")
 tex_opacity.CreateInput("st", Sdf.ValueTypeNames.Float2).ConnectToSource(uvset0.ConnectableAPI(), 'result')
+tex_opacity.CreateInput("wrapS", Sdf.ValueTypeNames.Token).Set("clamp")
+tex_opacity.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
 
 #
 
@@ -59,6 +63,9 @@ pbr_shader = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/pbr_sh
 pbr_shader.CreateIdAttr("UsdPreviewSurface")
 pbr_shader.CreateInput("metallic", Sdf.ValueTypeNames.Float).Set(0.0)
 pbr_shader.CreateInput("roughness", Sdf.ValueTypeNames.Float).Set(1.0)
+pbr_shader.CreateInput("diffuseColor", Sdf.ValueTypeNames.Color3f).ConnectToSource(tex_opacity.ConnectableAPI(), 'rgb')
+pbr_shader.CreateInput("opacity", Sdf.ValueTypeNames.Float).ConnectToSource(tex_opacity.ConnectableAPI(), 'a')
+pbr_shader.CreateInput("emissiveColor", Sdf.ValueTypeNames.Color3f).ConnectToSource(tex_emissive.ConnectableAPI(), 'rgb')
 
 material.CreateSurfaceOutput().ConnectToSource(pbr_shader.ConnectableAPI(), "surface")
 

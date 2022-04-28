@@ -27,6 +27,9 @@ def Xform "untitled"
                 uniform token info:id = "UsdUVTexture"
                 asset inputs:file = @0/image0_lin.jpg@
                 float2 inputs:st.connect = </untitled/Materials/material0/uvset0.outputs:result>
+                token inputs:wrapS = "clamp"
+                token inputs:wrapT = "clamp"
+                color3f outputs:rgb
             }
 
             def Shader "tex_opacity"
@@ -34,12 +37,19 @@ def Xform "untitled"
                 uniform token info:id = "UsdUVTexture"
                 asset inputs:file = @0/image0_unlit_a.png@
                 float2 inputs:st.connect = </untitled/Materials/material0/uvset0.outputs:result>
+                token inputs:wrapS = "clamp"
+                token inputs:wrapT = "clamp"
+                float outputs:a
+                color3f outputs:rgb
             }
 
             def Shader "pbr_shader"
             {
                 uniform token info:id = "UsdPreviewSurface"
+                color3f inputs:diffuseColor.connect = </untitled/Materials/material0/tex_opacity.outputs:rgb>
+                color3f inputs:emissiveColor.connect = </untitled/Materials/material0/tex_emissive.outputs:rgb>
                 float inputs:metallic = 0
+                float inputs:opacity.connect = </untitled/Materials/material0/tex_opacity.outputs:a>
                 float inputs:roughness = 1
                 token outputs:surface
             }
