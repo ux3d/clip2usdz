@@ -13,20 +13,35 @@ def Xform "untitled"
     {
         def Material "material0"
         {
-            def Shader "pbr_shader"
-            {
-            }
+            token outputs:surface.connect = </untitled/Materials/material0/pbr_shader.outputs:surface>
 
             def Shader "uvset0"
             {
+                uniform token info:id = "UsdPrimvarReader_float2"
+                token inputs:varname = "st0"
+                float2 outputs:result
             }
 
             def Shader "tex_emissive"
             {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @0/image0_lin.jpg@
+                float2 inputs:st.connect = </untitled/Materials/material0/uvset0.outputs:result>
             }
 
             def Shader "tex_opacity"
             {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @0/image0_unlit_a.png@
+                float2 inputs:st.connect = </untitled/Materials/material0/uvset0.outputs:result>
+            }
+
+            def Shader "pbr_shader"
+            {
+                uniform token info:id = "UsdPreviewSurface"
+                float inputs:metallic = 0
+                float inputs:roughness = 1
+                token outputs:surface
             }
         }
     }
