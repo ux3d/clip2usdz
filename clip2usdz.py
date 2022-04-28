@@ -2,6 +2,14 @@ import os
 
 from pxr import Usd, UsdGeom, UsdShade
 
+# Patameters
+
+endTimeCode = 143.5
+timeCodesPerSecond = 120.0
+
+ 
+# Stage
+
 stage = Usd.Stage.CreateNew('untitled.usda')
 
 #
@@ -30,8 +38,8 @@ prim = stage.GetPrimAtPath('/untitled')
 stage.SetDefaultPrim(prim)
 
 stage.SetStartTimeCode(0.0)
-stage.SetEndTimeCode(143.5)
-stage.SetTimeCodesPerSecond(120.0)
+stage.SetEndTimeCode(endTimeCode)
+stage.SetTimeCodesPerSecond(timeCodesPerSecond)
 
 stage.SetMetadata('upAxis', 'Y')
 
