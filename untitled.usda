@@ -79,6 +79,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh0"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0, 1), (0, 0), (0.16666667, 1), (0.16666667, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
 
             def Xform "node2"
@@ -95,6 +112,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh1"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0.16666667, 1), (0.16666667, 0), (0.33333334, 1), (0.33333334, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
 
             def Xform "node3"
@@ -111,6 +145,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh2"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0.33333334, 1), (0.33333334, 0), (0.5, 1), (0.5, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
 
             def Xform "node4"
@@ -127,6 +178,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh3"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0.5, 1), (0.5, 0), (0.6666667, 1), (0.6666667, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
 
             def Xform "node5"
@@ -143,6 +211,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh4"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0.6666667, 1), (0.6666667, 0), (0.8333333, 1), (0.8333333, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
 
             def Xform "node6"
@@ -159,6 +244,23 @@ def Xform "untitled"
                     180: (0.001, 0.001, 0.001),
                 }
                 uniform token[] xformOpOrder = ["xformOp:scale"]
+
+                def Mesh "mesh5"
+                {
+                    uniform bool doubleSided = 1
+                    float3[] extent = [(-1, 0, -1), (1, 0, 1)]
+                    int[] faceVertexCounts = [3, 3]
+                    int[] faceVertexIndices = [0, 1, 2, 3, 2, 1]
+                    rel material:binding = </untitled/Materials/material0>
+                    normal3f[] normals = [(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    point3f[] points = [(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)]
+                    texCoord2f[] primvars:st = [(0.8333333, 1), (0.8333333, 0), (1, 1), (1, 0)] (
+                        interpolation = "vertex"
+                    )
+                    uniform token subdivisionScheme = "none"
+                }
             }
         }
     }

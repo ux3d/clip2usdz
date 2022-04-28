@@ -14,6 +14,8 @@ sampling = 5.0
 flank = 0.5
 
 clips = rows * columns
+columnsStep = 1.0 / float(columns)
+rowsStep = 1.0 / float(rows)
 
 timeCodesPerSecond = fps * sampling
 endTimeCode = clips * timeCodesPerSecond 
@@ -110,6 +112,36 @@ for i in range(clips):
         if i == k:
             timeStamp = (k + 1) * fps * sampling
             scale.Set(time = timeStamp - flank, value = scaleValue)
+    
+    # Mesh
+    
+    meshName = "mesh" + str(i)
+    currentMesh = UsdGeom.Mesh.Define(stage, '/untitled/scene0/node0/' + nodeName + '/' + meshName)
+    currentMesh.CreateDoubleSidedAttr(1)
+    currentMesh.CreateExtentAttr([(-1, 0, -1), (1, 0, 1)])
+    currentMesh.CreateFaceVertexCountsAttr([3, 3])
+    currentMesh.CreateFaceVertexIndicesAttr([0, 1, 2, 3, 2, 1])
+    
+    currentMesh.CreateNormalsAttr([(0, 1, 0), (0, 1, 0), (0, 1, 0), (0, 1, 0)])
+    currentMesh.SetNormalsInterpolation('vertex')
+    
+    currentMesh.CreatePointsAttr([(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)])
+    
+    texCoords = currentMesh.CreatePrimvar("st", Sdf.ValueTypeNames.TexCoord2fArray, UsdGeom.Tokens.vertex)
+    
+    column = i % columns
+    row = i // columns
+     
+    uv = []
+    uv.append( (columnsStep * float(column + 0), rowsStep * float(row + 1)) )
+    uv.append( (columnsStep * float(column + 0), rowsStep * float(row + 0)) )
+    uv.append( (columnsStep * float(column + 1), rowsStep * float(row + 1)) )
+    uv.append( (columnsStep * float(column + 1), rowsStep * float(row + 0)) )
+    texCoords.Set(uv)
+    
+    currentMesh.CreateSubdivisionSchemeAttr('none')        
+    
+    UsdShade.MaterialBindingAPI(currentMesh).Bind(material)
     
 #
 # Stage settings
