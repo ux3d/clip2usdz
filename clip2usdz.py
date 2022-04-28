@@ -1,6 +1,6 @@
 import os
 
-from pxr import Sdf, Usd, UsdGeom, UsdShade
+from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 #
 # Parameters
@@ -20,6 +20,8 @@ stage = Usd.Stage.CreateNew('untitled.usda')
 untitled = UsdGeom.Xform.Define(stage, '/untitled')
 
 scope = UsdGeom.Scope.Define(stage, '/untitled/Materials')
+
+scene0 = UsdGeom.Xform.Define(stage, '/untitled/scene0')
 
 #
 # Material
@@ -68,6 +70,12 @@ pbr_shader.CreateInput("opacity", Sdf.ValueTypeNames.Float).ConnectToSource(tex_
 pbr_shader.CreateInput("emissiveColor", Sdf.ValueTypeNames.Color3f).ConnectToSource(tex_emissive.ConnectableAPI(), 'rgb')
 
 material.CreateSurfaceOutput().ConnectToSource(pbr_shader.ConnectableAPI(), "surface")
+
+#
+# Scene
+#
+
+scene0.AddScaleOp().Set(Gf.Vec3d(100.0, 100.0, 100.0))
 
 #
 # Stage settings
