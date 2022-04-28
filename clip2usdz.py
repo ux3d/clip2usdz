@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from argparse import ArgumentParser
 from PIL import Image
 from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
@@ -32,6 +33,8 @@ timeCodesPerSecond = float(args.timeCodesPerSecond)
 flank = float(args.flank)
 
 # Depending calculations
+
+stem = Path(imageName).stem
 
 clips = rows * columns
 columnsStep = 1.0 / float(columns)
@@ -72,36 +75,36 @@ rgbaImage.save('0/image0_unlit_a.png')
 # Stage
 #
 
-stage = Usd.Stage.CreateNew('untitled.usda')
+stage = Usd.Stage.CreateNew(stem + '.usda')
 
 #
 
-untitled = UsdGeom.Xform.Define(stage, '/untitled')
+untitled = UsdGeom.Xform.Define(stage, '/' + stem)
 
-scope = UsdGeom.Scope.Define(stage, '/untitled/Materials')
+scope = UsdGeom.Scope.Define(stage, '/' + stem + '/Materials')
 
-scene0 = UsdGeom.Xform.Define(stage, '/untitled/scene0')
+scene0 = UsdGeom.Xform.Define(stage, '/' + stem + '/scene0')
 
-node0 = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0')
+node0 = UsdGeom.Xform.Define(stage, '/' + stem + '/scene0/node0')
 
 #
 # Material
 #
 
-material = UsdShade.Material.Define(stage, '/untitled/Materials/material0')
+material = UsdShade.Material.Define(stage, '/' + stem + '/Materials/material0')
 
 #
 # Shaders
 #
 
-uvset0 = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/uvset0')
+uvset0 = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/uvset0')
 
 uvset0.CreateIdAttr("UsdPrimvarReader_float2")
 uvset0.CreateInput('varname', Sdf.ValueTypeNames.Token).Set('st0')
 
 #
 
-tex_emissive = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_emissive')
+tex_emissive = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/tex_emissive')
 
 tex_emissive.CreateIdAttr("UsdUVTexture")
 tex_emissive.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_lin.jpg")
@@ -111,7 +114,7 @@ tex_emissive.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
 
 #
 
-tex_opacity = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/tex_opacity')
+tex_opacity = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/tex_opacity')
 
 tex_opacity.CreateIdAttr("UsdUVTexture")
 tex_opacity.CreateInput('file', Sdf.ValueTypeNames.Asset).Set("0/image0_unlit_a.png")
@@ -121,7 +124,7 @@ tex_opacity.CreateInput("wrapT", Sdf.ValueTypeNames.Token).Set("clamp")
 
 #
 
-pbr_shader = UsdShade.Shader.Define(stage, '/untitled/Materials/material0/pbr_shader')
+pbr_shader = UsdShade.Shader.Define(stage, '/' + stem + '/Materials/material0/pbr_shader')
 
 pbr_shader.CreateIdAttr("UsdPreviewSurface")
 pbr_shader.CreateInput("metallic", Sdf.ValueTypeNames.Float).Set(0.0)
@@ -146,7 +149,7 @@ node0.AddTransformOp().Set(Gf.Matrix4d((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0),
 
 for i in range(clips):
     nodeName = "node" + str(i + 1)
-    currentNode = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0/' + nodeName)
+    currentNode = UsdGeom.Xform.Define(stage, '/' + stem + '/scene0/node0/' + nodeName)
     
     scale = currentNode.AddScaleOp()
     for k in range(clips + 1):
@@ -164,7 +167,7 @@ for i in range(clips):
     # Mesh
     
     meshName = "mesh" + str(i)
-    currentMesh = UsdGeom.Mesh.Define(stage, '/untitled/scene0/node0/' + nodeName + '/' + meshName)
+    currentMesh = UsdGeom.Mesh.Define(stage, '/' + stem + '/scene0/node0/' + nodeName + '/' + meshName)
     currentMesh.CreateDoubleSidedAttr(1)
     currentMesh.CreateExtentAttr([(-1, 0, -1), (1, 0, 1)])
     currentMesh.CreateFaceVertexCountsAttr([3, 3])
@@ -195,7 +198,7 @@ for i in range(clips):
 # Stage settings
 #
 
-prim = stage.GetPrimAtPath('/untitled')
+prim = stage.GetPrimAtPath('/' + stem )
 stage.SetDefaultPrim(prim)
 
 stage.SetStartTimeCode(0.0)
@@ -214,9 +217,9 @@ stage.GetRootLayer().Save()
 
 # Convert
 
-os.system("usdcat untitled.usda -o untitled.usdc")
+os.system("usdcat " + stem + ".usda -o " + stem + ".usdc")
 
 # Pack
 
-os.system("usdzip -r untitled.usdz 0 untitled.usdc")
-print("Info: Saved USDZ 'untitled.usdz'")
+os.system("usdzip -r " + stem + ".usdz 0 "  + stem + ".usdc")
+print("Info: Saved USDZ '" + stem + ".usdz'")
