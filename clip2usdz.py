@@ -1,5 +1,5 @@
 import os
-
+from PIL import Image
 from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 #
@@ -12,6 +12,7 @@ epsilon = 0.001
 duration = 1.0
 timeCodesPerSecond = 60
 flank = 0.01
+imageName = 'pngegg.png'
 
 # Depending calculations
 
@@ -22,6 +23,32 @@ rowsStep = 1.0 / float(rows)
 frameStep = (duration * timeCodesPerSecond) / clips
 
 endTimeCode = (frameStep * clips) - flank
+
+#
+# Image conversion
+#
+
+image = Image.open(imageName)
+width, height = image.size
+
+rgbImage = image.convert('RGB')
+for y in range(1, height):
+    for x in range(1 , width):
+        pixel = rgbImage.getpixel((x,y))
+        modify = list(pixel)
+        for c in range(3):
+            modify[c] = int(pow(modify[c]/255.0, 2.2) * 255.0) 
+        rgbImage.putpixel((x,y), tuple(modify))
+rgbImage.save('0/image0_lin.jpg')
+
+for y in range(1, height):
+    for x in range(1 , width):
+        pixel = image.getpixel((x,y))
+        modify = list(pixel)
+        for c in range(3):
+            modify[c] = 0 
+        image.putpixel((x,y), tuple(modify))
+image.save('0/image0_unlit_a.png') 
 
 # 
 # Stage
