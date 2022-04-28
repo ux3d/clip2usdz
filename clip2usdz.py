@@ -10,7 +10,7 @@ rows = 1
 columns = 6
 epsilon = 0.001
 duration = 1.0
-timeCodesPerSecond = 200
+timeCodesPerSecond = 60
 flank = 0.01
 
 # Depending calculations
