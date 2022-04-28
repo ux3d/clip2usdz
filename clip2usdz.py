@@ -127,7 +127,7 @@ for i in range(clips):
     
     currentMesh.CreatePointsAttr([(-1, 0, -1), (-1, 0, 1), (1, 0, -1), (1, 0, 1)])
     
-    texCoords = currentMesh.CreatePrimvar("st", Sdf.ValueTypeNames.TexCoord2fArray, UsdGeom.Tokens.vertex)
+    texCoords = currentMesh.CreatePrimvar("st0", Sdf.ValueTypeNames.TexCoord2fArray, UsdGeom.Tokens.vertex)
     
     column = i % columns
     row = i // columns
