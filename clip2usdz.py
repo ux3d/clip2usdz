@@ -6,10 +6,17 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 # Parameters
 #
 
-clips = 6
+rows = 1
+columns = 6
+fps = 6.0
+epsilon = 0.001
+sampling = 5.0
+flank = 0.5
 
-endTimeCode = 143.5
-timeCodesPerSecond = 120.0
+clips = rows * columns
+
+timeCodesPerSecond = fps * sampling
+endTimeCode = clips * timeCodesPerSecond 
 
 # 
 # Stage
@@ -87,14 +94,23 @@ scene0.AddScaleOp().Set(Gf.Vec3d(100.0, 100.0, 100.0))
 
 node0.AddTransformOp().Set(Gf.Matrix4d((1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0), (0, 0, 0, 1)))
 
-for nodeIndex in range(clips):
-    nodeName = "node" + str(nodeIndex + 1)
+for i in range(clips):
+    nodeName = "node" + str(i + 1)
     currentNode = UsdGeom.Xform.Define(stage, '/untitled/scene0/node0/' + nodeName)
     
     scale = currentNode.AddScaleOp()
-    scale.Set(time = 0, value = (1.0, 1.0, 1.0))
-    # TODO: Calculate list
-
+    for k in range(clips + 1):
+        timeStamp = k * fps * sampling
+        scaleValue = (epsilon, epsilon, epsilon)
+        if i == k:
+            if k > 0:
+                scale.Set(time = timeStamp - flank, value = (epsilon, epsilon, epsilon))
+            scaleValue = (1.0, 1.0, 1.0)
+        scale.Set(time = timeStamp, value = scaleValue)
+        if i == k:
+            timeStamp = (k + 1) * fps * sampling
+            scale.Set(time = timeStamp - flank, value = scaleValue)
+    
 #
 # Stage settings
 #
