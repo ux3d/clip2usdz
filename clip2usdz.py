@@ -227,5 +227,5 @@ os.system("usdcat " + stem + ".usda -o " + stem + ".usdc")
 
 # Pack
 
-os.system("usdzip -r " + stem + ".usdz 0 "  + stem + ".usdc")
+os.system("usdzip -r " + stem + ".usdz " + stem + " " + stem + ".usdc")
 print("Info: Saved USDZ '" + stem + ".usdz'")
