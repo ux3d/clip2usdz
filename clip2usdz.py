@@ -24,12 +24,12 @@ parser.add_argument('-t', dest='timeCodesPerSecond', default=timeCodesPerSecond,
 parser.add_argument('-f', dest='flank', default=flank, help='Value used to simulate a step interpolation.')
 args = parser.parse_args()
 
-rows = args.rows
-columns = args.columns
-duration = duration
+rows = int(args.rows)
+columns = int(args.columns)
+duration = float(duration)
 imageName = args.imageName
-timeCodesPerSecond = args.timeCodesPerSecond
-flank = args.flank
+timeCodesPerSecond = float(args.timeCodesPerSecond)
+flank = float(args.flank)
 
 # Depending calculations
 
@@ -58,14 +58,15 @@ for y in range(1, height):
         rgbImage.putpixel((x,y), tuple(modify))
 rgbImage.save('0/image0_lin.jpg')
 
+rgbaImage = image.convert('RGBA')
 for y in range(1, height):
     for x in range(1 , width):
-        pixel = image.getpixel((x,y))
+        pixel = rgbaImage.getpixel((x,y))
         modify = list(pixel)
         for c in range(3):
             modify[c] = 0 
-        image.putpixel((x,y), tuple(modify))
-image.save('0/image0_unlit_a.png') 
+        rgbaImage.putpixel((x,y), tuple(modify))
+rgbaImage.save('0/image0_unlit_a.png') 
 
 # 
 # Stage
