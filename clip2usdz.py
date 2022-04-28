@@ -37,8 +37,6 @@ stage.SetMetadata('upAxis', 'Y')
 
 # Saving
 
-print("Info: Saved glTF 'untitled.usda'")
-
 stage.GetRootLayer().Save()
 
 # Convert
@@ -48,3 +46,4 @@ os.system("usdcat untitled.usda -o untitled.usdc")
 # Pack
 
 os.system("usdzip -r untitled.usdz 0 untitled.usdc")
+print("Info: Saved USDZ 'untitled.usdz'")
