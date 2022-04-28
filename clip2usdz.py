@@ -10,7 +10,7 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 rows = 1
 columns = 6
 duration = 1.0
-imageName = 'pngegg.png'
+imageName = 'RunningGirl.png'
 epsilon = 0.001
 timeCodesPerSecond = 120
 flank = 1.0 / timeCodesPerSecond 
@@ -26,7 +26,7 @@ args = parser.parse_args()
 
 rows = int(args.rows)
 columns = int(args.columns)
-duration = float(duration)
+duration = float(args.duration)
 imageName = args.imageName
 timeCodesPerSecond = float(args.timeCodesPerSecond)
 flank = float(args.flank)
