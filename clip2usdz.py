@@ -1,4 +1,5 @@
 import os
+from argparse import ArgumentParser
 from PIL import Image
 from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
@@ -8,11 +9,27 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdShade
 
 rows = 1
 columns = 6
-epsilon = 0.001
 duration = 1.0
+imageName = 'pngegg.png'
+epsilon = 0.001
 timeCodesPerSecond = 60
 flank = 0.01
-imageName = 'pngegg.png'
+
+parser = ArgumentParser()
+parser.add_argument('-r', dest='rows', default=rows, help='Number of rows of the animation strip.')
+parser.add_argument('-c', dest='columns', default=columns, help='Number of columns of the animation strip.')
+parser.add_argument('-d', dest='duration', default=duration, help='Duration in seconds.')
+parser.add_argument('-i', dest='imageName', default=imageName, help='Use another image beside the included animation strip.')
+parser.add_argument('-t', dest='timeCodesPerSecond', default=timeCodesPerSecond, help='Number of frames used per second.')
+parser.add_argument('-f', dest='flank', default=flank, help='Value used to simulate a step interpolation.')
+args = parser.parse_args()
+
+rows = args.rows
+columns = args.columns
+duration = duration
+imageName = args.imageName
+timeCodesPerSecond = args.timeCodesPerSecond
+flank = args.flank
 
 # Depending calculations
 
