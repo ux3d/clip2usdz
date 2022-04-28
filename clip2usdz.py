@@ -135,7 +135,7 @@ material.CreateSurfaceOutput().ConnectToSource(pbr_shader.ConnectableAPI(), "sur
 # Scene
 #
 
-scene0.AddScaleOp().Set(Gf.Vec3d(100.0, 100.0, 100.0))
+scene0.AddScaleOp().Set(Gf.Vec3d(1.0, 1.0, 1.0))
 
 #
 # Node
@@ -202,6 +202,8 @@ stage.SetEndTimeCode(endTimeCode)
 stage.SetTimeCodesPerSecond(timeCodesPerSecond)
 
 stage.SetMetadata('upAxis', 'Y')
+
+UsdGeom.SetStageMetersPerUnit(stage, 0.1)
 
 #
 # Saving
