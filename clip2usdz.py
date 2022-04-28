@@ -1,3 +1,5 @@
+import os
+
 from pxr import Usd, UsdGeom, UsdShade
 
 stage = Usd.Stage.CreateNew('untitled.usda')
@@ -38,3 +40,11 @@ stage.SetMetadata('upAxis', 'Y')
 print("Info: Saved glTF 'untitled.usda'")
 
 stage.GetRootLayer().Save()
+
+# Convert
+
+os.system("usdcat untitled.usda -o untitled.usdc")
+
+# Pack
+
+os.system("usdzip -r untitled.usdz 0 untitled.usdc")
