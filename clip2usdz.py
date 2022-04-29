@@ -187,7 +187,7 @@ for i in range(clips):
     texCoords = currentMesh.CreatePrimvar("st0", Sdf.ValueTypeNames.TexCoord2fArray, UsdGeom.Tokens.vertex)
     
     column = i % columns
-    row = i // columns
+    row = (rows - 1) - (i // columns)
      
     uv = []
     uv.append( (columnsStep * float(column + 0), rowsStep * float(row + 1)) )
